@@ -1,25 +1,114 @@
 <html>
 	<head>
-		<title>SheSharp Kudos Generator</title>
-		<script>
+		<title>SheSharp 90s Kudos Generator</title>
+		<meta charset="UTF-8">
+		<style>
+			body {
+			  	background-color: #00B19A;
+			  	font-family:'comic sans ms';
+				background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);;
+			}
+			p#welcomemsg {
+				font-size: 40px;
+			}
+			p#inspiration {
+				font-size: 30px;
+			}
+			h1 {
+				margin-top: 0px;
+				margin-bottom: 10px;
+				font-family: 'Times New Roman', Times, serif;
+				font-size: 1em;
+				background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+}
+			
+			div {
+				background-color: white;
+				width:40%;
+				align-items: center;
+				vertical-align:-webkit-baseline-middle;
+				align-self: center;
+				padding: 30px;
+				
+
+			}
+
+			img {
+	  			width: 100px,
+			  	height: auto
+			}
+
+			input[type=text] {
+				width: 300;
+
+			}
+		</style>
+		<script> 
+			const messages = [	"You've got this!",
+							  	"Yay you!",
+							  	"You don’t always have to be who they want you to be, you know.",
+							  	"You rule!",
+								"You are as cool as Betty White",
+								"Don’t let anyone, ever, make you feel like you don’t deserve what you want.",
+								"We get to choose who we let into our weird little worlds."
+							 ];
+			const morningemoji = "&#9749";
+			const dayemoji = "&#127774";
+			const afternoonemoji = "&#127752";
+			const eveningemoji = "&#127749";
+			const nightemoji = "&#127773";\
+
 			function clickMe() {
-                 //alert("this is working");
-				document.getElementById("kudos").value= "Yay you!";
+				postInspiration();
+			}
+			function randomMsg() {
+				var rand = Math.floor(Math.random() * messages.length);
+				return messages[rand];
+			}
+			function getTimeofDay() {
+				var dayphase;
+				var emoji;
+				var currentdate = new Date();
+				var time = currentdate.getHours();
+				if (time < 5) {
+					dayphase = "Night!";
+					emoji = nightemoji;
+				} else if (time < 12) {
+					dayphase = "Morning!";
+					emoji = morningemoji;
+				} else if (time < 18) {
+					dayphase = "Afternoon!";
+					emoji = dayemoji;
+				} else { 
+					dayphase = "Evening!";
+					emoji = eveningemoji;
+				}
+				return dayphase + " " + emoji;
+			}
+			function postWelcome() {
+				var msg = "Good " + getTimeofDay();
+				document.getElementById("welcomemsg").innerHTML = msg + "<br>";
+			}
+			function postInspiration() {
+				var msg = "❤</br>" + randomMsg() +"</br>❤";
+				document.getElementById("inspiration").innerHTML = "<h1>" + msg + "</h1><br>";
 			}
 		</script>
 	</head>
-<body>
 
-
-	<p id="thing">
-		Here is my Kudos Generator!
-	</p>
-
-	<form>
-		<input type="text" id="kudos" value="Testing"></input>
-
-		<input type="button" id="clickme" value="Click Me!" onClick="clickMe()"/>
-
-	</form>
-
-</body>
+	<body onload=postWelcome()>
+	<center>
+	<div>
+		<marquee bgcolor="yellow">The 90s Kudos Generator!</marquee>
+		
+		<p id="welcomemsg" ></p>
+		<form>
+			<input type="button" id="clickme" value="Inspire Me!" onClick="clickMe()"/>
+		</form>
+		<p id="inspiration" ></p>
+	</div>
+	</center>
+	</body>
+</html>

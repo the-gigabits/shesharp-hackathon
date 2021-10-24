@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>SheSharp Kudos Generator</title>
+		<style>
+			body {
+			  background-color: white;
+              color: rgb(58, 148, 136);
+			}
+			
+	        h1 {
+			  color: rgb(58, 148, 136);
+			  margin-left: 40px;
+			}
+
+			div {
+
+
+			}
+
+			input[type=text] {
+				width: 200;
+
+			}
+			</style>
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script>
+			const messages = ["❤ You've got this! ❤",
+							  "❤ Yay you! ❤",
+							  "❤ Today is going to be amazing! ❤",
+							  "❤ You rule! ❤"
+							 ];
+			function clickMe() {
+                 //alert("this is working");
+				var message = randomMsg();
+				document.getElementById("kudos").value= message;
+			}
+			function randomMsg() {
+				var rand = Math.floor(Math.random() * messages.length);
+				return messages[rand];
+			}
+		</script>
+	</head>
+<body>
+
+	<div id="root"></div>
+
+    <script type="text/babel">
+		function Hello() {
+		  //return <h1>Hello World!</h1>;
+		  return randomMsg();
+		}
+
+        function sayHello() {
+            
+        }
+
+        function App() {
+        return (
+          <section>
+            <Button onClick={sayHello}>
+             Disabled Button
+            </Button>
+          </section>
+        );
+        }
+
+
+		ReactDOM.render(<App />, document.getElementById('root'))
+	  </script>
+
+</body>
